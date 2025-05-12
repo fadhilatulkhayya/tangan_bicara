@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'setting_screen.dart';
 import 'quiz_screen.dart';
+=======
+import 'camera_screen.dart';
+import 'dictionary_screen.dart';
+>>>>>>> f3419fc1d490df260e1b4e0a103eed221c78ab05
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -149,13 +154,14 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildFeatureBox({
+  static Widget _buildFeatureBox({
     required IconData icon,
     required String label,
     required BuildContext context,
   }) {
     return GestureDetector(
       onTap: () {
+<<<<<<< HEAD
         if (label == "Quiz") {
           Navigator.push(
             context,
@@ -165,6 +171,18 @@ class HomeScreen extends StatelessWidget {
           // Tambahkan navigasi ke fitur kamera jika ada
         } else if (label == "Kamus") {
           // Tambahkan navigasi ke kamus jika ada
+=======
+        if (label == "Camera") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const CameraScreen()),
+          );
+        } else if (label == "Kamus") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const DictionaryScreen()),
+          );
+>>>>>>> f3419fc1d490df260e1b4e0a103eed221c78ab05
         }
       },
       child: Column(
@@ -179,7 +197,14 @@ class HomeScreen extends StatelessWidget {
             child: Icon(icon, size: 40, color: Colors.white),
           ),
           const SizedBox(height: 8),
+<<<<<<< HEAD
           Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
+=======
+          Text(
+            label,
+            style: const TextStyle(fontWeight: FontWeight.w500),
+          ),
+>>>>>>> f3419fc1d490df260e1b4e0a103eed221c78ab05
         ],
       ),
     );
