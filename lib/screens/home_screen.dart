@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'camera_screen.dart';
+import 'dictionary_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -13,18 +15,9 @@ class HomeScreen extends StatelessWidget {
         selectedItemColor: const Color(0xFFB6935E),
         unselectedItemColor: Colors.grey,
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: '',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.chat), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
         ],
       ),
       body: SafeArea(
@@ -42,10 +35,10 @@ class HomeScreen extends StatelessWidget {
                     width: 30,
                     height: 30,
                   ),
-                  Expanded(
+                  const Expanded(
                     child: Align(
                       alignment: Alignment.center,
-                      child: const Text(
+                      child: Text(
                         "Home",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -146,28 +139,43 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildFeatureBox({
+  static Widget _buildFeatureBox({
     required IconData icon,
     required String label,
     required BuildContext context,
   }) {
-    return Column(
-      children: [
-        Container(
-          width: 100,
-          height: 100,
-          decoration: BoxDecoration(
-            color: const Color(0xFFB6935E),
-            borderRadius: BorderRadius.circular(15),
+    return GestureDetector(
+      onTap: () {
+        if (label == "Camera") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const CameraScreen()),
+          );
+        } else if (label == "Kamus") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (_) => const DictionaryScreen()),
+          );
+        }
+      },
+      child: Column(
+        children: [
+          Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              color: const Color(0xFFB6935E),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Icon(icon, size: 40, color: Colors.white),
           ),
-          child: Icon(icon, size: 40, color: Colors.white),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          label,
-          style: const TextStyle(fontWeight: FontWeight.w500),
-        ),
-      ],
+          const SizedBox(height: 8),
+          Text(
+            label,
+            style: const TextStyle(fontWeight: FontWeight.w500),
+          ),
+        ],
+      ),
     );
   }
 }
