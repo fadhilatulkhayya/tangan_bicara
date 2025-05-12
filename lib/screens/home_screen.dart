@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'setting_screen.dart';
+import 'quiz_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -12,19 +14,18 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: Colors.grey[200],
         selectedItemColor: const Color(0xFFB6935E),
         unselectedItemColor: Colors.grey,
+        onTap: (index) {
+          if (index == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProfileScreen()),
+            );
+          }
+        },
         items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings),
-            label: '',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.chat), label: ''),
+          BottomNavigationBarItem(icon: Icon(Icons.settings), label: ''),
         ],
       ),
       body: SafeArea(
@@ -42,10 +43,10 @@ class HomeScreen extends StatelessWidget {
                     width: 30,
                     height: 30,
                   ),
-                  Expanded(
+                  const Expanded(
                     child: Align(
                       alignment: Alignment.center,
-                      child: const Text(
+                      child: Text(
                         "Home",
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -100,10 +101,7 @@ class HomeScreen extends StatelessWidget {
                         ),
                         Text(
                           'Jelajahi Fitur Aplikasi',
-                          style: TextStyle(
-                            fontSize: 12,
-                            color: Colors.black54,
-                          ),
+                          style: TextStyle(fontSize: 12, color: Colors.black54),
                         ),
                       ],
                     ),
@@ -137,6 +135,11 @@ class HomeScreen extends StatelessWidget {
                     label: "Kamus",
                     context: context,
                   ),
+                  _buildFeatureBox(
+                    icon: Icons.psychology,
+                    label: "Quiz",
+                    context: context,
+                  ),
                 ],
               ),
             ],
@@ -151,23 +154,34 @@ class HomeScreen extends StatelessWidget {
     required String label,
     required BuildContext context,
   }) {
-    return Column(
-      children: [
-        Container(
-          width: 100,
-          height: 100,
-          decoration: BoxDecoration(
-            color: const Color(0xFFB6935E),
-            borderRadius: BorderRadius.circular(15),
+    return GestureDetector(
+      onTap: () {
+        if (label == "Quiz") {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const QuizScreen()),
+          );
+        } else if (label == "Camera") {
+          // Tambahkan navigasi ke fitur kamera jika ada
+        } else if (label == "Kamus") {
+          // Tambahkan navigasi ke kamus jika ada
+        }
+      },
+      child: Column(
+        children: [
+          Container(
+            width: 100,
+            height: 100,
+            decoration: BoxDecoration(
+              color: const Color(0xFFB6935E),
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: Icon(icon, size: 40, color: Colors.white),
           ),
-          child: Icon(icon, size: 40, color: Colors.white),
-        ),
-        const SizedBox(height: 8),
-        Text(
-          label,
-          style: const TextStyle(fontWeight: FontWeight.w500),
-        ),
-      ],
+          const SizedBox(height: 8),
+          Text(label, style: const TextStyle(fontWeight: FontWeight.w500)),
+        ],
+      ),
     );
   }
 }
