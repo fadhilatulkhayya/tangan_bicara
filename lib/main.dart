@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tangan_bicara/screens/home_screen.dart';
+import 'package:tangan_bicara/screens/login_screen.dart';
 import 'screens/welcome_screen.dart';
 
 void main() {
@@ -18,8 +20,13 @@ class TanganBicaraApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.brown),
         useMaterial3: true,
       ),
-      home: const WelcomeScreen(),
-      debugShowCheckedModeBanner: false,
+      initialRoute: '/',
+      routes: {
+        '/': (context) => WelcomeScreen(),
+        '/login': (context) => LoginScreen(),
+        '/home': (context) => HomeScreen(),
+      },
     );
   }
 }
+

@@ -6,7 +6,7 @@ class DictionaryScreen extends StatelessWidget {
   final List<Map<String, String>> signs = const [
     {'image': 'assets/signs/a.jpg', 'letter': 'A'},
     {'image': 'assets/signs/a.jpg', 'letter': 'A'},
-    {'image': 'assets/signs/a.jpg', 'letter': 'A'},
+    {'image': 'assets/signs/a.jpg', 'letter': 'A'}, 
     {'image': 'assets/signs/a.jpg', 'letter': 'A'},
     {'image': 'assets/signs/a.jpg', 'letter': 'A'},
     {'image': 'assets/signs/a.jpg', 'letter': 'A'},

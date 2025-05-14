@@ -55,7 +55,7 @@ class QuizScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Image.asset(
-                    'assets/images/tebak_tangan.png', // ganti dengan asset gambar kamu
+                    'assets/signs/a.jpg', // ganti dengan asset gambar kamu
                     fit: BoxFit.contain,
                   ),
                 ),
