@@ -14,6 +14,11 @@ class DictionaryScreen extends StatelessWidget {
     {'image': 'assets/signs/a.jpg', 'letter': 'A'},
     {'image': 'assets/signs/a.jpg', 'letter': 'A'},
     {'image': 'assets/signs/a.jpg', 'letter': 'A'},
+    {'image': 'assets/signs/a.jpg', 'letter': 'A'},
+    {'image': 'assets/signs/a.jpg', 'letter': 'A'},
+    {'image': 'assets/signs/a.jpg', 'letter': 'A'},
+    {'image': 'assets/signs/a.jpg', 'letter': 'A'},
+    {'image': 'assets/signs/a.jpg', 'letter': 'A'},
     
   ];
 
