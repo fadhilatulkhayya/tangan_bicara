@@ -2,8 +2,16 @@
 import 'package:flutter/material.dart';
 import '../widgets/custom_button.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  bool _obscurePassword = true;
+  bool _obscureConfirmPassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -42,9 +50,27 @@ class SignUpScreen extends StatelessWidget {
               const SizedBox(height: 20),
               _buildInputField(icon: Icons.person, hintText: 'Username'),
               const SizedBox(height: 16),
-              _buildInputField(icon: Icons.lock, hintText: 'Password', obscure: true),
+              _buildInputField(
+                icon: Icons.lock,
+                hintText: 'Password',
+                obscure: _obscurePassword,
+                onEyePressed: () {
+                  setState(() {
+                    _obscurePassword = !_obscurePassword;
+                  });
+                },
+              ),
               const SizedBox(height: 16),
-              _buildInputField(icon: Icons.lock, hintText: 'Confirm Password', obscure: true),
+              _buildInputField(
+                icon: Icons.lock,
+                hintText: 'Confirm Password',
+                obscure: _obscureConfirmPassword,
+                onEyePressed: () {
+                  setState(() {
+                    _obscureConfirmPassword = !_obscureConfirmPassword;
+                  });
+                },
+              ),
               const SizedBox(height: 24),
               CustomButton(
                 label: 'Login',
@@ -63,6 +89,7 @@ class SignUpScreen extends StatelessWidget {
     required IconData icon,
     required String hintText,
     bool obscure = false,
+    VoidCallback? onEyePressed,
   }) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -76,6 +103,15 @@ class SignUpScreen extends StatelessWidget {
           border: InputBorder.none,
           icon: Icon(icon, color: Colors.grey[700]),
           hintText: hintText,
+          suffixIcon: onEyePressed != null
+              ? IconButton(
+                  icon: Icon(
+                    obscure ? Icons.visibility_off : Icons.visibility,
+                    color: Colors.grey[700],
+                  ),
+                  onPressed: onEyePressed,
+                )
+              : null,
         ),
       ),
     );

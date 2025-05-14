@@ -2,8 +2,15 @@ import 'package:flutter/material.dart';
 import 'signup_screen.dart';
 import 'home_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool _obscurePassword = true;
 
   @override
   Widget build(BuildContext context) {
@@ -69,9 +76,9 @@ class LoginScreen extends StatelessWidget {
                         ),
                         const SizedBox(height: 15),
 
-                        // Password
+                        // Password dengan icon mata
                         TextField(
-                          obscureText: true,
+                          obscureText: _obscurePassword,
                           decoration: InputDecoration(
                             prefixIcon: const Icon(Icons.lock),
                             hintText: 'Password',
@@ -80,6 +87,18 @@ class LoginScreen extends StatelessWidget {
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                               borderSide: BorderSide.none,
+                            ),
+                            suffixIcon: IconButton(
+                              icon: Icon(
+                                _obscurePassword
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                              ),
+                              onPressed: () {
+                                setState(() {
+                                  _obscurePassword = !_obscurePassword;
+                                });
+                              },
                             ),
                           ),
                         ),
