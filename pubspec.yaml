@@ -64,6 +64,31 @@ flutter:
      - assets/images/logo_tanganbicara.png
      - assets/signs/a.jpg
      - assets/signs/a.jpg
+     - assets/signs/b.jpg
+     - assets/signs/c.jpg
+     - assets/signs/d.jpg
+     - assets/signs/e.jpg
+     - assets/signs/f.jpg
+     - assets/signs/g.jpg
+     - assets/signs/h.jpg
+     - assets/signs/i.jpg
+     - assets/signs/j.jpg
+     - assets/signs/k.jpg
+     - assets/signs/l.jpg
+     - assets/signs/m.jpg
+     - assets/signs/n.jpg
+     - assets/signs/o.jpg
+     - assets/signs/p.jpg
+     - assets/signs/q.jpg
+     - assets/signs/r.jpg
+     - assets/signs/s.jpg
+     - assets/signs/t.jpg
+     - assets/signs/u.jpg
+     - assets/signs/v.jpg
+     - assets/signs/w.jpg
+     - assets/signs/x.jpg
+     - assets/signs/y.jpg
+     - assets/signs/z.jpg
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
