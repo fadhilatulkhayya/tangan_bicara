@@ -15,8 +15,8 @@ class _QuizScreenState extends State<QuizScreen> {
 
   final List<Map<String, dynamic>> questions = [
     {
-      'image': 'assets/signs/a.jpg',
-      'answer': 'A',
+      'image': 'assets/signs/c.jpg',
+      'answer': 'C',
       'options': ['B', 'A', 'C'],
     },
     {
@@ -25,8 +25,8 @@ class _QuizScreenState extends State<QuizScreen> {
       'options': ['D', 'C', 'B'],
     },
     {
-      'image': 'assets/signs/c.jpg',
-      'answer': 'C',
+      'image': 'assets/signs/j.jpg',
+      'answer': 'J',
       'options': ['C', 'J', 'W'],
     },
     {
@@ -40,8 +40,8 @@ class _QuizScreenState extends State<QuizScreen> {
       'options': ['E', 'B', 'D'],
     },
     {
-      'image': 'assets/signs/f.jpg',
-      'answer': 'F',
+      'image': 'assets/signs/m.jpg',
+      'answer': 'M',
       'options': ['M', 'Q', 'F'],
     },
     {
@@ -50,8 +50,8 @@ class _QuizScreenState extends State<QuizScreen> {
       'options': ['G', 'D', 'K'],
     },
     {
-      'image': 'assets/signs/h.jpg',
-      'answer': 'H',
+      'image': 'assets/signs/r.jpg',
+      'answer': 'R',
       'options': ['R', 'P', 'H'],
     },
     {
@@ -62,6 +62,11 @@ class _QuizScreenState extends State<QuizScreen> {
     { 
       'image': 'assets/signs/j.jpg',
       'answer': 'J',
+    },
+    {
+      'image': 'assets/signs/s.jpg',
+      'answer': 'S',
+
       'options': ['T', 'S', 'j'],
     },
     {
@@ -70,13 +75,13 @@ class _QuizScreenState extends State<QuizScreen> {
       'options': ['Y', 'K', 'E'],
     },
     {
-      'image': 'assets/signs/l.jpg',
-      'answer': 'L',
+      'image': 'assets/signs/w.jpg',
+      'answer': 'W',
       'options': ['L', 'B', 'W'],
     },
     {
-      'image': 'assets/signs/m.jpg',
-      'answer': 'M',
+      'image': 'assets/signs/t.jpg',
+      'answer': 'T',
       'options': ['T', 'N', 'M'],
     },
     {
@@ -85,14 +90,14 @@ class _QuizScreenState extends State<QuizScreen> {
       'options': ['N', 'Z', 'S'],
     },
     {
-      'image': 'assets/signs/o',
-      'answer': 'O',
+      'image': 'assets/signs/p.jpg',
+      'answer': 'P',
       'options': ['P', 'O', 'G'],
     },
     {
-      'image': 'assets/signs/p.jpg',
-      'answer': 'P',
-      'options': ['P', 'B', 'D'],
+      'image': 'assets/signs/a.jpg',
+      'answer': 'A',
+      'options': ['P', 'A', 'D'],
     },
     {
       'image': 'assets/signs/q.jpg',
@@ -100,24 +105,24 @@ class _QuizScreenState extends State<QuizScreen> {
       'options': ['H', 'V', 'Q'],
     },
     {
-      'image': 'assets/signs/r.jpg',
-      'answer': 'R',
-      'options': ['R', 'M', 'S'],
+      'image': 'assets/signs/z.jpg',
+      'answer': 'Z',
+      'options': ['R', 'M', 'Z'],
     },
     {
-      'image': 'assets/signs/s.jpg',
-      'answer': 'S',
+      'image': 'assets/signs/v.jpg',
+      'answer': 'V',
       'options': ['V', 'F', 'S'],
     },
     {
-      'image': 'assets/signs/t.jpg',
-      'answer': 'T',
+      'image': 'assets/signs/l.jpg',
+      'answer': 'L',
       'options': ['C', 'T', 'L'],
     },
     {
-      'image': 'assets/signs/u.jpg',
-      'answer': 'U',
-      'options': ['U', 'H', 'Q'],
+      'image': 'assets/signs/e.jpg',
+      'answer': 'E',
+      'options': ['U', 'H', 'E'],
     },
     {
       'image': 'assets/signs/v.jpg',
@@ -140,11 +145,10 @@ class _QuizScreenState extends State<QuizScreen> {
       'options': ['R', 'Y', 'Z'],
     },
     {
-      'image': 'assets/signs/z.jpg',
-      'answer': 'Z',
-      'options': ['Z', 'B', 'D'],
+      'image': 'assets/signs/f.jpg',
+      'answer': 'F',
+      'options': ['Z', 'F', 'D'],
     },
-
   ];
 
   void checkAnswer(String selectedAnswer) {
@@ -167,23 +171,24 @@ class _QuizScreenState extends State<QuizScreen> {
         setState(() => showOverlay = false);
         showDialog(
           context: context,
-          builder: (_) => AlertDialog(
-            title: const Text("Selesai!"),
-            content: Text("Skor kamu: $score dari ${questions.length}"),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  setState(() {
-                    currentQuestionIndex = 0;
-                    score = 0;
-                    showOverlay = false;
-                  });
-                },
-                child: const Text("Main lagi"),
+          builder:
+              (_) => AlertDialog(
+                title: const Text("Selesai!"),
+                content: Text("Skor kamu: $score dari ${questions.length}"),
+                actions: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                      setState(() {
+                        currentQuestionIndex = 0;
+                        score = 0;
+                        showOverlay = false;
+                      });
+                    },
+                    child: const Text("Main lagi"),
+                  ),
+                ],
               ),
-            ],
-          ),
         );
       }
     });
@@ -232,9 +237,10 @@ class _QuizScreenState extends State<QuizScreen> {
                       width: 200,
                       height: 200,
                       decoration: BoxDecoration(
-                        color: isCorrect
-                            ? Colors.green.withOpacity(0.7)
-                            : Colors.red.withOpacity(0.7),
+                        color:
+                            isCorrect
+                                ? Colors.green.withOpacity(0.7)
+                                : Colors.red.withOpacity(0.7),
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Center(
@@ -271,9 +277,7 @@ class _QuizScreenState extends State<QuizScreen> {
         onPressed: () => checkAnswer(label),
         style: ElevatedButton.styleFrom(
           backgroundColor: const Color(0xFFB08968),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8),
-          ),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         ),
         child: Text(
           label,
