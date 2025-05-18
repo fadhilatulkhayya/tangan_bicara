@@ -4,8 +4,47 @@ import 'quiz_screen.dart';
 import 'camera_screen.dart';
 import 'dictionary_screen.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  String currentLanguage = 'id'; // 'id' untuk Indonesia, 'en' untuk Inggris
+
+  final Map<String, Map<String, String>> translations = {
+    'id': {
+      'home': 'Beranda',
+      'greeting': 'Hi Pengguna!',
+      'subtitle': 'Selamat Pagi Dunia',
+      'welcome': 'Selamat Datang!',
+      'explore': 'Jelajahi Fitur Aplikasi',
+      'features': 'Fitur',
+      'camera': 'Kamera',
+      'dictionary': 'Kamus',
+      'quiz': 'Kuis',
+    },
+    'en': {
+      'home': 'Home',
+      'greeting': 'Hi User!',
+      'subtitle': 'Good Morning World',
+      'welcome': 'Welcome!',
+      'explore': 'Explore App Features',
+      'features': 'Features',
+      'camera': 'Camera',
+      'dictionary': 'Dictionary',
+      'quiz': 'Quiz',
+    },
+  };
+
+  void _changeLanguage(String lang) {
+    setState(() {
+      currentLanguage = lang;
+    });
+    Navigator.pop(context);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,12 +84,12 @@ class HomeScreen extends StatelessWidget {
                     width: 30,
                     height: 30,
                   ),
-                  const Expanded(
+                  Expanded(
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
-                        "Home",
-                        style: TextStyle(
+                        translations[currentLanguage]!['home']!,
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 18,
                           color: Colors.black,
@@ -58,22 +97,46 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  IconButton(
+                    icon: const Icon(Icons.language, color: Colors.black),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (_) => AlertDialog(
+                          title: const Text('Pilih Bahasa / Choose Language'),
+                          content: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              ListTile(
+                                title: const Text('🇮🇩 Bahasa Indonesia'),
+                                onTap: () => _changeLanguage('id'),
+                              ),
+                              ListTile(
+                                title: const Text('🇺🇸 English'),
+                                onTap: () => _changeLanguage('en'),
+                              ),
+                            ],
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ],
               ),
               const SizedBox(height: 20),
 
               // Greeting
-              const Text(
-                'Hi Pengguna!',
-                style: TextStyle(
+              Text(
+                translations[currentLanguage]!['greeting']!,
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFFB6935E),
                 ),
               ),
-              const Text(
-                'Selamat Pagi Dunia',
-                style: TextStyle(color: Colors.black54),
+              Text(
+                translations[currentLanguage]!['subtitle']!,
+                style: const TextStyle(color: Colors.black54),
               ),
               const SizedBox(height: 20),
 
@@ -87,23 +150,23 @@ class HomeScreen extends StatelessWidget {
                   color: Colors.brown[50],
                 ),
                 child: Row(
-                  children: const [
-                    Icon(Icons.waving_hand_rounded, color: Color(0xFFB6935E)),
-                    SizedBox(width: 10),
+                  children: [
+                    const Icon(Icons.waving_hand_rounded, color: Color(0xFFB6935E)),
+                    const SizedBox(width: 10),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Selamat Datang!',
-                          style: TextStyle(
+                          translations[currentLanguage]!['welcome']!,
+                          style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                             color: Color(0xFFB6935E),
                           ),
                         ),
                         Text(
-                          'Jelajahi Fitur Aplikasi',
-                          style: TextStyle(fontSize: 12, color: Colors.black54),
+                          translations[currentLanguage]!['explore']!,
+                          style: const TextStyle(fontSize: 12, color: Colors.black54),
                         ),
                       ],
                     ),
@@ -113,9 +176,9 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 30),
 
               // Fitur section
-              const Text(
-                'Fitur',
-                style: TextStyle(
+              Text(
+                translations[currentLanguage]!['features']!,
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
@@ -129,17 +192,17 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   _buildFeatureBox(
                     icon: Icons.camera_alt,
-                    label: "Camera",
+                    label: translations[currentLanguage]!['camera']!,
                     context: context,
                   ),
                   _buildFeatureBox(
                     icon: Icons.menu_book,
-                    label: "Kamus",
+                    label: translations[currentLanguage]!['dictionary']!,
                     context: context,
                   ),
                   _buildFeatureBox(
                     icon: Icons.psychology,
-                    label: "Quiz",
+                    label: translations[currentLanguage]!['quiz']!,
                     context: context,
                   ),
                 ],
@@ -158,17 +221,17 @@ class HomeScreen extends StatelessWidget {
   }) {
     return GestureDetector(
       onTap: () {
-        if (label == "Quiz") {
+        if (label == "Quiz" || label == "Kuis") {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => const QuizScreen()),
           );
-        } else if (label == "Camera") {
+        } else if (label == "Camera" || label == "Kamera") {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (_) => const CameraScreen()),
           );
-        } else if (label == "Kamus") {
+        } else if (label == "Dictionary" || label == "Kamus") {
           Navigator.push(
             context,
             MaterialPageRoute(builder: (_) => const DictionaryScreen()),

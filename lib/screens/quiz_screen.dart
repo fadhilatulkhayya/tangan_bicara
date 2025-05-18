@@ -59,7 +59,7 @@ class _QuizScreenState extends State<QuizScreen> {
       'answer': 'I',
       'options': ['O', 'I', 'K'],
     },
-    {
+    { 
       'image': 'assets/signs/j.jpg',
       'answer': 'J',
       'options': ['T', 'S', 'j'],
